@@ -1,10 +1,10 @@
 <!-- ke thua view master: student-layout/master.blade.php -->
-@extends('student-layout.master')
+@extends('admin-layout.master')
 
 <!-- Thay đổi nội dung đơn giản -->
-@section('title','Title list extends')
+@section('title','Title list extends form admin-layout' )
 <!-- Thay đổi nội dung phức tạp -->
-@section('header','Header List extends')
+@section('content-header','Danh sach sinh vien')
 
 @section('content')
 
@@ -18,6 +18,8 @@
             <th scope="col">gender</th>
             <th scope="col">address</th>
             <th scope="col">active</th>
+            <th scope="col">active</th>
+
         </thead>
         <tbody>
             @foreach($students as $student)
@@ -43,4 +45,6 @@
     </table>
 </div>
 @endsection
+
+
 @section('footer','Footer list extends');
