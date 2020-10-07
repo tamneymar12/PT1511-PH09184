@@ -36,7 +36,7 @@ Route::resource('students', StudentController::class);
 //excepy(['create,'edit']); khi can bo qua hàm nào đó
 
 //Tạo route cho subject controller không dùng resource
-Route::get('subject', [SubjectController::class, 'index'])->name('subject.index');
+// Route::get('subject', [SubjectController::class, 'index'])->name('subject.index');
 // Route::get('/students', function () {
 //     //Su dung query builder
 //     //Lay ra mang students
@@ -71,39 +71,44 @@ Route::get('subject', [SubjectController::class, 'index'])->name('subject.index'
 // })->name('students-list');
 
 //chuc nang login +route POST
-Route::get('/login', function () {
-    return view('login');
-})->name('get-login');
 
-Route::get('/students/{id}', function($id){
-    $student = DB::table('students')->find($id);
-    // dd($student);
-    return view('students.show',[
-        'student'=>$student
-    ]);
-})->name('students-show');
 
-Route::get('/students', function() {
-    $students = DB::table('students')->get();
 
-    return view('students.list', [
-        'students' => $students
-    ]);
-})->name('students-list');
 
-Route::post('/post-login', function (Request $request) {
-    // xu ly logic,truy van ...
-    // dd($request->all());
-    //su dung $request->all hoac $request->input name
-    $username = $request->username;
-    //thuc hien truy van theo gia tri vua gui len
-    $student = DB::table('students')
-        ->where('name', 'like', "%$username%")->get();
-    // dd($student);
-    // neu co student thi se redirect sang student-list
-    if ($student) {
-        return redirect()->route('students-list');
-    }
-    // // neu khong thi quay lai man login
-    return redirect()->route('get-login');
-})->name('post-login');
+
+// Route::get('/login', function () {
+//     return view('login');
+// })->name('get-login');
+
+// Route::get('/students/{id}', function($id){
+//     $student = DB::table('students')->find($id);
+//     // dd($student);
+//     return view('students.show',[
+//         'student'=>$student
+//     ]);
+// })->name('students-show');
+
+// Route::get('/students', function() {
+//     $students = DB::table('students')->get();
+
+//     return view('students.list', [
+//         'students' => $students
+//     ]);
+// })->name('students-list');
+
+// Route::post('/post-login', function (Request $request) {
+//     // xu ly logic,truy van ...
+//     // dd($request->all());
+//     //su dung $request->all hoac $request->input name
+//     $username = $request->username;
+//     //thuc hien truy van theo gia tri vua gui len
+//     $student = DB::table('students')
+//         ->where('name', 'like', "%$username%")->get();
+//     // dd($student);
+//     // neu co student thi se redirect sang student-list
+//     if ($student) {
+//         return redirect()->route('students-list');
+//     }
+//     // // neu khong thi quay lai man login
+//     return redirect()->route('get-login');
+// })->name('post-login');

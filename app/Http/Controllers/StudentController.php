@@ -16,7 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student= Student::all();// Lấy ra hết
+        $student = Student::orderBy('id','desc')->get();// Lấy ra hết
         //Hoặc $student = Student::oderBY('id),'desc')->get();
 
         return view('students.list',['students'=> $student]);
@@ -30,7 +30,8 @@ class StudentController extends Controller
     public function create()
     {
         //
-        dd('Cretate');
+        // dd('Cretate');\
+        return view('students.add');
     }
 
     /**
@@ -41,15 +42,23 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = new Student;
+        // $student->name=$request->name;
+        // $student->phone=$request->phone;
+        // $student->age=$request->age;
+        // $student->address=$request->address;
+        // $student->gender=$request->gender;
+        // $student->is_active=$request->is_active;
+        $student->fill($request->all());
+
+        $student->save();
+
+        return redirect()->route('students.index');
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+
     //Sử dụng phương thức GEt, route name la students.show
     public function show(Student $student)
     {
@@ -73,6 +82,7 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         //
+        return view('students.edit', ['students'=>$student]);
     }
 
     /**
@@ -85,6 +95,14 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         //
+        // dd($request->all());
+        $student->name = $request->name;
+        $student->update($request->all());
+        $student->save();
+
+
+
+        return redirect()->route('students.index');
     }
 
     /**
@@ -96,5 +114,12 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+        if($student){
+
+            $student->delete();//Trả về kết quả true hoặc là false
+        }
+        //Cách 2: Student::destroy($student->id); //trả về số lượng bản ghi bằng xóa
+        //Redirect về danh sạc (có thực hiện tuy vấn lấy ds moi)
+        return redirect()->route('students.index');
     }
 }

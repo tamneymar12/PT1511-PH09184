@@ -9,27 +9,29 @@
 @section('content')
 
     <div class="container">
-        <table class="table">
-            <thead>
+        <table class="table table-striped">
+            <thead class="thead-dark">
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>phone</th>
-                    <th>age</th>
-                    <th>gender</th>
-                    <th>address</th>
-                    <th>is_active</th>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">phone</th>
+                    <th scope="col">age</th>
+                    <th scope="col">gender</th>
+                    <th scope="col">address</th>
+                    <th scope="col">is_active</th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th>{{$student->id}}</th>
-                    <th>{{$student->name}}</th>
-                    <th>{{$student->phone}}</th>
-                    <th>{{$student->age}}</th>
-                    <th>{{$student->gender}}</th>
-                    <th>{{$student->address}}</th>
-                    <th>{{$student->is_active}}</th>
+                    <td scope="col">{{$student->id}}</td>
+                    <td scope="col">{{$student->name}}</td>
+                    <td scope="col">{{$student->phone}}</td>
+                    <td scope="col">{{$student->age}}</td>
+                    <td scope="col">{{$student->gender}}</td>
+                    <td scope="col">{{$student->address}}</td>
+                    <td scope="col">{{$student->is_active}}</td>
+
                 </tr>
             </tbody>
         </table>
